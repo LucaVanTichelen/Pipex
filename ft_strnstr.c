@@ -6,13 +6,13 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:05:50 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/07 14:49:47 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:20:56 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "pipex.h"
 
-static char	*ft_find(char *ihaystack, char *ineedle, size_t len)
+char	*ft_find(char *ihaystack, char *ineedle, size_t len)
 {
 	size_t	i;
 	size_t	n;

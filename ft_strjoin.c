@@ -6,13 +6,13 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:51:29 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/07 14:57:29 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:21:02 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "pipex.h"
 
-static int	ft_fill_s1(char const *s1, int a, char *str)
+int	ft_fill_s1(char const *s1, int a, char *str)
 {
 	while (s1[a])
 	{
@@ -22,7 +22,7 @@ static int	ft_fill_s1(char const *s1, int a, char *str)
 	return (a);
 }
 
-static void	ft_fill_s2(char const *s2, int a, int b, char *str)
+void	ft_fill_s2(char const *s2, int a, int b, char *str)
 {
 	while (s2[b])
 	{

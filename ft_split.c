@@ -6,13 +6,13 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:31:10 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/07 14:33:05 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:17:52 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static char	**ft_malloc(char **str, int *tab, int x)
+char	**ft_malloc(char **str, int *tab, int x)
 {
 	str[tab[1]] = malloc(sizeof(char) * (tab[0] - x + 1));
 	if (!(str[tab[1]]))
@@ -27,7 +27,7 @@ static char	**ft_malloc(char **str, int *tab, int x)
 	return (str);
 }
 
-static char	**ft_fill_split(char const *s, char c, char **str, int *tab)
+char	**ft_fill_split(char const *s, char c, char **str, int *tab)
 {
 	int	x;
 

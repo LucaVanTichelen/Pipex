@@ -6,14 +6,13 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:32:47 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/07 14:54:35 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:22:33 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
+#include "pipex.h"
 
-static char	*ft_fill(char *str, char const *s, unsigned int start, size_t len)
+char	*ft_fill(char *str, char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 

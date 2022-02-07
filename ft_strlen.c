@@ -6,11 +6,11 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 15:16:08 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/07 14:19:03 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:20:45 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "pipex.h"
 
 size_t	ft_strlen(const char *s)
 {
