@@ -6,7 +6,7 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:08:28 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/11 11:29:22 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/12 09:29:02 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	child1(int *fd, char **argv, char **envp, char **paths)
 	close(fd[1]);
 	while (paths[i])
 	{
-		cmd = ft_strjoin(paths[i], argv[2]);
+		cmd = ft_strjoin(paths[i], "/");
+		cmd = ft_strjoin(cmd, args[0]);
 		execve(cmd, args, envp);
 		i++;
 	}
@@ -72,7 +73,8 @@ void	child2(int *fd, char **argv, char **envp, char **paths)
 	close(outfile);
 	while (execve(paths[i], args, envp))
 	{
-		cmd = ft_strjoin(paths[i], argv[3]);
+		cmd = ft_strjoin(paths[i], "/");
+		cmd = ft_strjoin(cmd, args[0]);
 		execve(cmd, args, envp);
 		i++;
 	}
