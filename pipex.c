@@ -6,17 +6,18 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:46:38 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 14:53:56 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 15:35:25 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(char *str)
+int	ft_error(char *str1, char *str2)
 {
-	write(2, "command not found: ", 19);
-	write(2, str, ft_strlen(str));
+	write(2, str1, ft_strlen(str1));
+	write(2, str2, ft_strlen(str2));
 	write(2, "\n", 1);
+	return (1);
 }
 
 void	child1(int *fd, char **argv, char **envp, char **paths)
@@ -44,7 +45,7 @@ void	child1(int *fd, char **argv, char **envp, char **paths)
 		free(cmd2);
 		i++;
 	}
-	ft_error(args[0]);
+	ft_error("command not found: ", args[0]);
 	free_arr(args);
 }
 
@@ -73,7 +74,7 @@ void	child2(int *fd, char **argv, char **envp, char **paths)
 		free(cmd2);
 		i++;
 	}
-	ft_error(args[0]);
+	ft_error("command not found: ", args[0]);
 	free_arr(args);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:08:28 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 14:37:25 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 15:36:39 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,16 @@ int	check_input(int argc, char **argv)
 		write(2, "invalid number of arguments\n", 28);
 		return (1);
 	}
+	fd = open(argv[1], R_OK);
+	if (fd == -1)
+		return (ft_error("no such file or directory: ", argv[1]));
+	close (fd);
 	if (access(argv[1], R_OK))
-	{
-		write(2, "permission denied: ", 20);
-		write(2, argv[1], ft_strlen(argv[1]));
-		write(2, "\n", 1);
-		return (2);
-	}
+		return (ft_error("permission denied: ", argv[1]));
 	fd = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0644);
 	close(fd);
 	if (access(argv[4], W_OK))
-	{
-		write(2, "permission denied: ", 20);
-		write(2, argv[4], ft_strlen(argv[4]));
-		write(2, "\n", 1);
-		return (3);
-	}
+		return (ft_error("permission denied: ", argv[4]));
 	return (0);
 }
 
