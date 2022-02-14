@@ -6,7 +6,7 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:08:28 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 12:46:51 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:37:25 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,41 @@ char	**parse_paths(char **envp)
 	return (paths);
 }
 
+int	check_input(int argc, char **argv)
+{
+	int	fd;
+
+	if (argc != 5)
+	{
+		write(2, "invalid number of arguments\n", 28);
+		return (1);
+	}
+	if (access(argv[1], R_OK))
+	{
+		write(2, "permission denied: ", 20);
+		write(2, argv[1], ft_strlen(argv[1]));
+		write(2, "\n", 1);
+		return (2);
+	}
+	fd = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0644);
+	close(fd);
+	if (access(argv[4], W_OK))
+	{
+		write(2, "permission denied: ", 20);
+		write(2, argv[4], ft_strlen(argv[4]));
+		write(2, "\n", 1);
+		return (3);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	int		fd[2];
 	char	**paths;
 
-	if (argc != 5)
-		return (0);
+	if (check_input(argc, argv))
+		return (1);
 	paths = NULL;
 	paths = parse_paths(envp);
 	pipe(fd);

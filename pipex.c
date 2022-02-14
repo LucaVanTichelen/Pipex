@@ -6,7 +6,7 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:46:38 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 12:46:55 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:35:19 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	child1(int *fd, char **argv, char **envp, char **paths)
 		i++;
 	}
 	free_arr(args);
-	write(2, "Command not found\n", ft_strlen("Command not found\n"));
 }
 
 void	child2(int *fd, char **argv, char **envp, char **paths)
@@ -50,7 +49,7 @@ void	child2(int *fd, char **argv, char **envp, char **paths)
 	char	*cmd2;
 
 	i = 0;
-	outfile = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 644);
+	outfile = open(argv[4], O_WRONLY);
 	args = ft_split(argv[3], ' ');
 	close(fd[1]);
 	dup2(fd[0], 0);
@@ -67,7 +66,6 @@ void	child2(int *fd, char **argv, char **envp, char **paths)
 		i++;
 	}
 	free_arr(args);
-	write(2, "Command not found\n", ft_strlen("Command not found\n"));
 }
 
 void	pipex(char **argv, char **envp, int *fd, char **paths)
