@@ -6,12 +6,24 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:08:28 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/12 09:29:02 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:46:51 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 char	**parse_paths(char **envp)
 {
@@ -32,59 +44,9 @@ char	**parse_paths(char **envp)
 	return (paths);
 }
 
-void	child1(int *fd, char **argv, char **envp, char **paths)
-{
-	int		i;
-	int		infile;
-	char	**args;
-	char 	*cmd;
-
-	i = 0;
-	infile = open(argv[1], O_RDONLY);
-	args = ft_split(argv[2], ' ');
-	close(fd[0]);
-	dup2(infile, 0);
-	dup2(fd[1], 1);
-	close(infile);
-	close(fd[1]);
-	while (paths[i])
-	{
-		cmd = ft_strjoin(paths[i], "/");
-		cmd = ft_strjoin(cmd, args[0]);
-		execve(cmd, args, envp);
-		i++;
-	}
-}
-
-void	child2(int *fd, char **argv, char **envp, char **paths)
-{
-	int		i;
-	int		outfile;
-	char	**args;
-	char	*cmd;
-
-	i = 0;
-	outfile = open(argv[4], O_WRONLY, O_CREAT);
-	args = ft_split(argv[3], ' ');
-	close(fd[1]);
-	dup2(fd[0], 0);
-	dup2(outfile, 1);
-	close(fd[0]);
-	close(outfile);
-	while (execve(paths[i], args, envp))
-	{
-		cmd = ft_strjoin(paths[i], "/");
-		cmd = ft_strjoin(cmd, args[0]);
-		execve(cmd, args, envp);
-		i++;
-	}
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	int		fd[2];
-	int		pid1;
-	int		pid2;
 	char	**paths;
 
 	if (argc != 5)
@@ -92,23 +54,7 @@ int	main(int argc, char **argv, char **envp)
 	paths = NULL;
 	paths = parse_paths(envp);
 	pipe(fd);
-	pid1 = fork();
-	if (pid1 == 0)
-	{
-		child1(fd, argv, envp, paths);
-	}
-	else
-	{
-		waitpid(pid1, NULL, 0);
-		pid2 = fork();
-		if (pid2 == 0)
-			child2(fd, argv, envp, paths);
-		else
-		{
-			close(fd[0]);
-			close(fd[1]);
-			waitpid(pid2, NULL, 0);
-		}
-	}
+	pipex(argv, envp, fd, paths);
+	free_arr(paths);
 	return (0);
 }
