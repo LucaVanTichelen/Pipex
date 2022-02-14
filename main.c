@@ -6,7 +6,7 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:08:28 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 15:36:39 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:13:25 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,18 @@ int	check_input(int argc, char **argv)
 	}
 	fd = open(argv[1], R_OK);
 	if (fd == -1)
-		return (ft_error("no such file or directory: ", argv[1]));
+	{
+		perror(argv[1]);
+		return (2);
+	}
 	close (fd);
-	if (access(argv[1], R_OK))
-		return (ft_error("permission denied: ", argv[1]));
 	fd = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0644);
 	close(fd);
 	if (access(argv[4], W_OK))
-		return (ft_error("permission denied: ", argv[4]));
+	{
+		perror(argv[4]);
+		return (4);
+	}
 	return (0);
 }
 

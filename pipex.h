@@ -6,13 +6,14 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:27:39 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 15:36:03 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:13:15 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
+# include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -38,7 +39,7 @@ void	free_arr(char **args);
 char	**parse_paths(char **envp);
 int		check_input(int argc, char **argv);
 
-int		ft_error(char *str1, char *str2);
+void	ft_error(char *str);
 void	child1(int *fd, char **argv, char **envp, char **paths);
 void	child2(int *fd, char **argv, char **envp, char **paths);
 void	pipex(char **argv, char **envp, int *fd, char **paths);
