@@ -6,11 +6,11 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:31:10 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/07 15:17:52 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:57:26 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "pipex.h"
 
 char	**ft_malloc(char **str, int *tab, int x)
 {

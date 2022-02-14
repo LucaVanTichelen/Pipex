@@ -6,7 +6,7 @@
 /*   By: lvan-tic <lvan-tic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:27:39 by lvan-tic          #+#    #+#             */
-/*   Updated: 2022/02/14 12:47:23 by lvan-tic         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:56:57 by lvan-tic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 void	free_arr(char **args);
 char	**parse_paths(char **envp);
+int		check_input(int argc, char **argv);
 
+void	ft_error(char *str);
 void	child1(int *fd, char **argv, char **envp, char **paths);
 void	child2(int *fd, char **argv, char **envp, char **paths);
 void	pipex(char **argv, char **envp, int *fd, char **paths);
